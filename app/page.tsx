@@ -5,7 +5,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions)
   return (
     <main>
-      
+      {session?.user.id}
     </main>
   );
 }

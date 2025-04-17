@@ -13,8 +13,8 @@ export default function Navbar() {
       <Link href={"/"} className='text-3xl '>Bloggers</Link>
       <div className='flex gap-10 text-xl'>
         {session.status === "unauthenticated" ? 
-        <Button variant={"outline"} onClick={()=>signIn("google")} >SignIn</Button>:<Button variant={"outline"} onClick={()=>signOut()} >Logout</Button>}
-
+        <Button onClick={()=>signIn("google")} >SignIn</Button>:<Button onClick={()=>signOut()} >Logout</Button>}
+        
         <Link href={"/dashboard"}>Dashboard</Link>
         <ModeToggle/>
       </div>
