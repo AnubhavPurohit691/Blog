@@ -13,6 +13,7 @@ async function getData(userId:string){
       createdAt:"desc"
     },
     include:{
+      author:true,
       comments:{
         include:{
           author:true
