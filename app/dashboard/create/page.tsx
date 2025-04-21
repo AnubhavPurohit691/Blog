@@ -19,11 +19,11 @@ export default function Createpost() {
                     <div className='grid gap-4'>
                         <div>
                             <Label htmlFor="title" className='text-sm font-medium'>Title</Label>
-                            <Input type="text" id='title' className='border rounded-md p-2 w-full' />
+                            <Input type="text" id='title' name='title' className='border rounded-md p-2 w-full' />
                         </div>
                         <div>
                             <Label htmlFor="content" className='text-sm font-medium'>Content</Label>
-                            <Textarea id='content' className='border rounded-md p-2 w-full h-32' />
+                            <Textarea id='content' name="content"  className='border rounded-md p-2 w-full h-32' />
                         </div>
                     </div>
                     <div className='w-full'>

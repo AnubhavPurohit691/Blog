@@ -6,6 +6,6 @@ export default async function Home() {
   return (
     <main>
       {session?.user.id}
-  </main>
+    </main>
   );
 }
