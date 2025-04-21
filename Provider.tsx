@@ -1,13 +1,20 @@
-"use client"
-import { SessionProvider } from 'next-auth/react'
-import React from 'react'
+"use client";
 
-export default function Provider({children}: {children: React.ReactNode}) {
+import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "@/components/Themeprovider";
+import Navbar from "@/components/Navbar";
+
+export default function Provider({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-      <SessionProvider>
+    <SessionProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
         {children}
-      </SessionProvider>
-    </div>
-  )
+      </ThemeProvider>
+    // </SessionProvider>
+  );
 }

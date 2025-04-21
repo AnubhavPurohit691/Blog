@@ -1,3 +1,5 @@
+import { handleSubmit } from '@/app/action'
+import SubmitButton from '@/components/SubmitButton'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -13,7 +15,7 @@ export default function Createpost() {
                 <CardDescription>Create a new post to share with the world</CardDescription>
             </CardHeader>
             <CardContent>
-                <form className='flex flex-col gap-4'>
+                <form className='flex flex-col gap-4' action={handleSubmit}>
                     <div className='grid gap-4'>
                         <div>
                             <Label htmlFor="title" className='text-sm font-medium'>Title</Label>
@@ -24,7 +26,9 @@ export default function Createpost() {
                             <Textarea id='content' className='border rounded-md p-2 w-full h-32' />
                         </div>
                     </div>
-                    <button type="submit" className='bg-blue-500 text-white py-2 px-4 rounded-md mt-4'>Create Post</button>
+                    <div className='w-full'>
+                    <SubmitButton/>
+                    </div>
                 </form>
             </CardContent>
       </Card>
