@@ -1,3 +1,4 @@
+import { BlogPostCard } from '@/components/BlogPostCard'
 import { buttonVariants } from '@/components/ui/button'
 import { prisma } from '@/lib/db'
 import { getServerSession } from 'next-auth'
@@ -27,8 +28,15 @@ async function getData(userId:string){
 
 export default async function Dashboard() {
   const session=await getServerSession()
-  const userId = String(session?.user.id)
-  const data = await getData(userId)
+  const user=await prisma.user.findFirst({
+    where:{
+      email:session?.user.email as string
+    }
+  })
+  if (!user) {
+    return <div>User not found</div>;
+  }
+  const data = await getData(user.id);
   console.log(data)
   return (
     <div className='px-16 pt-8'>
@@ -41,9 +49,9 @@ export default async function Dashboard() {
         </Link>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-          {/* {data.map((item)=>{
-            <BlogPostCard data={item} key={item.id}/>
-          })} */}
+          {data.map((item)=>{
+           return  <BlogPostCard data={item} key={item.id}/>
+          })}
       </div>
     </div>
   )

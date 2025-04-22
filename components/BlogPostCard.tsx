@@ -22,7 +22,7 @@ export function BlogPostCard({ data }: IappProps) {
       <Link href={`/post/${data.id}`} className="block w-full h-full">
         <div className="relative h-48 w-full overflow-hidden">
           <Image
-            src={data.imageUrl||""}
+            src={data.imageUrl||''}
             alt="Image for blog"
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
