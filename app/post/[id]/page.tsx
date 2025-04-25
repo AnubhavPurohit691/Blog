@@ -13,7 +13,8 @@ interface Blog {
   comments: Comment[]
 }
 
-export default async function Posts({ params: { id } }: { params: { id: string } }) {
+export default async function Posts({ params}: { params: { id: string } }) {
+  const id = params.id
   const data = await prisma.blog.findFirst({
     where: {
       id: id
@@ -21,9 +22,10 @@ export default async function Posts({ params: { id } }: { params: { id: string }
     include: {
       comments: {
         orderBy: { createdAt: 'desc' }
-      }
-    }
+      },
+    },
   })
+  console.log(data)
 
   return (
     <div className="max-w-2xl mx-auto p-4">
