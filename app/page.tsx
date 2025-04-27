@@ -33,7 +33,13 @@ export default async function Home() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {data.map((item) => (
-            <BlogPostCard data={item} key={item.id} />
+            <BlogPostCard 
+              data={{ 
+                ...item, 
+                ImageUrl: item.ImageUrl ?? undefined 
+              }} 
+              key={item.id} 
+            />
           ))}
         </div>
       </div>

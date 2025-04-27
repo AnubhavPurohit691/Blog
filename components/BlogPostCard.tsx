@@ -6,7 +6,7 @@ interface IappProps {
     id: string;
     title: string;
     content: string;
-    imageUrl?: string;
+    ImageUrl?: string;
     authorId: string;
     author: {
       name: string, id: string
@@ -15,18 +15,16 @@ interface IappProps {
     updatedAt: Date;
   };
 }
-
 export function BlogPostCard({ data }: IappProps) {
   return (
     <div className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-all hover:shadow-lg">
       <Link href={`/post/${data.id}`} className="block w-full h-full">
         <div className="relative h-48 w-full overflow-hidd2en">
-          {data.imageUrl ? (
+          {data.ImageUrl ? (
             <Image
-            src={"/uploads/1745537226925-Anubhav.png"}
+            src={data.ImageUrl}
             alt="Blog Image"
-            width={500}
-            height={500}
+            fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
           
@@ -54,7 +52,7 @@ export function BlogPostCard({ data }: IappProps) {
               </p>
             </div>
 
-            <time className="text-xs text-gray-500">
+            <time className="text-xs text-black font-bold">
               {new Intl.DateTimeFormat("en-US", {
                 year: "numeric",
                 month: "short",

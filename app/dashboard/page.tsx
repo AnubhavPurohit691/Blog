@@ -49,8 +49,12 @@ export default async function Dashboard() {
         </Link>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-          {data.map((item)=>{
-           return  <BlogPostCard data={item} key={item.id}/>
+          {data.map((item) => {
+            const formattedItem = {
+              ...item,
+              ImageUrl: item.ImageUrl ?? undefined,
+            };
+            return <BlogPostCard data={formattedItem} key={item.id} />;
           })}
       </div>
     </div>
