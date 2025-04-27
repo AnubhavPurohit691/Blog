@@ -22,9 +22,8 @@ export async function handleSubmit(formData: FormData) {
 
   // file start
 
-
   if (!file || file.size === 0) {
-    return 
+    return;
   }
 
   const bytes = await file.arrayBuffer(); // read file into memory
@@ -35,7 +34,7 @@ export async function handleSubmit(formData: FormData) {
 
   const fileName = `${Date.now()}-${file.name}`; // unique filename
   const filePath = path.join(uploadsDir, fileName);
-console.log(filePath)
+  console.log(filePath);
   await writeFile(filePath, buffer); // write file to disk
 
   // file end
@@ -44,17 +43,17 @@ console.log(filePath)
     throw new Error("Missing title or content");
   }
   const user = await prisma.user.findFirst({
-    where:{
-        email:session.user.email as string
-    }
-  })
+    where: {
+      email: session.user.email as string,
+    },
+  });
   if (user?.id) {
     await prisma.blog.create({
       data: {
         content,
         title,
         authorId: user.id,
-        ImageUrl:`/uploads/${fileName}`
+        ImageUrl: `/uploads/${fileName}`,
       },
     });
   } else {
