@@ -51,7 +51,6 @@ export function BlogPostCard({ data }: IappProps) {
                 {data.author.name}
               </p>
             </div>
-
             <time className="text-xs text-black font-bold">
               {new Intl.DateTimeFormat("en-US", {
                 year: "numeric",
