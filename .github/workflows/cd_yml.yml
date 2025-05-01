@@ -33,5 +33,4 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/blogapplication:latest
-            docker compose down
-            docker compose up -d
+            DATABASE_URL=${{ secrets.VM_DATABASE_URL }} docker compose up -d --build
