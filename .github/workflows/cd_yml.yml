@@ -22,8 +22,7 @@ jobs:
       - name: Build and push docker image
         run: |
           docker compose build
-          IMAGE_NAME=$(basename $(pwd))_app
-          docker tag $IMAGE_NAME ${{ secrets.Docker_USERNAME }}/blogapplication:latest
+          docker tag blog_app ${{ secrets.Docker_USERNAME }}/blogapplication:latest
           docker push ${{ secrets.Docker_USERNAME }}/blogapplication:latest
 
       - name: SSH into VM and Deploy
@@ -33,5 +32,11 @@ jobs:
           username: ${{ secrets.VM_OS }}
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/blogapplication:latest
-            DATABASE_URL=${{ secrets.VM_DATABASE_URL }} docker compose up -d --build
+            docker pull ${{ secrets.Docker_USERNAME }}/blogapplication:latest
+            docker stop blogapplication || true
+            docker rm blogapplication || true
+            docker run -d \
+              --name blogapplication \
+              -p 80:3000 \
+              -e DATABASE_URL=${{ secrets.VM_DATABASE_URL }} \
+              ${{ secrets.Docker_USERNAME }}/blogapplication:latest

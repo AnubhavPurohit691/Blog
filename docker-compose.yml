@@ -11,15 +11,13 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: ${DOCKER_USERNAME}/blogapplication:latest
     ports:
       - 3000:3000
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgresql://postgres:mysecret@postgres:5432/postgres
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:mysecret@postgres:5432/postgres}
 
 volumes:
   postgres_data:
