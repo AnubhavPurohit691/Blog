@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "pnpx prisma migrate dev && next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "db:migrate":"",
     "lint": "next lint",
     "format": "prettier --write ."
   },
