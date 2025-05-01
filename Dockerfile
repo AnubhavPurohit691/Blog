@@ -2,5 +2,8 @@ FROM node:23-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY ./package.json ./package.json
+
+COPY  ./pnpm-lock.yaml ./pnpm-lock.yaml
+
 
