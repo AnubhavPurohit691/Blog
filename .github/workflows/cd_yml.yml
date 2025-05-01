@@ -22,8 +22,8 @@ jobs:
       - name: Build and push docker image
         run: |
           docker compose build
-          docker tag your-image-name ${{ secrets.Docker_USERNAME }}/your-image-name:latest
-          docker push ${{ secrets.Docker_USERNAME }}/your-image-name:latest
+          docker tag blogapplication ${{ secrets.Docker_USERNAME }}/blogapplication:latest
+          docker push ${{ secrets.Docker_USERNAME }}/blogapplication:latest
 
       - name: SSH into VM and Deploy
         uses: appleboy/ssh-action@v1.0.0
@@ -32,7 +32,6 @@ jobs:
           username: ${{ secrets.VM_OS }}
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/your-image-name:latest
-            docker stop your-container-name || true
-            docker rm your-container-name || true
-            docker run -d --name your-container-name -p 80:80 ${{ secrets.DOCKER_USERNAME }}/your-image-name:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/blogapplication:latest
+            docker compose down
+            docker compose up -d
