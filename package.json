@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpx prisma migrate dev && next dev --turbopack",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "db:migrate": "",
     "lint": "next lint",
+    "format": "prettier --write .",
     "lint:check": "eslint .",
-  "format:check": "prettier --check ."
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@prisma/client": "6.6.0",
