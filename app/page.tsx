@@ -23,9 +23,9 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-black ">
-      <div className="container mx-auto px-4 py-12">
+<div className="container mx-auto px-4 py-12">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">
+  <h1 className="text-4xl font-bold text-white mb-4">
             Welcome to Our Blog
           </h1>
           <p className="text-lg text-white max-w-2xl mx-auto">
@@ -34,7 +34,7 @@ export default async function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+ <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {data.map((item) => (
             <BlogPostCard
               data={{
