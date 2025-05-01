@@ -15,7 +15,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
       >
         {children}
       </ThemeProvider>
-      //{" "}
+      
     </SessionProvider>
   );
 }

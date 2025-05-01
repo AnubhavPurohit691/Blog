@@ -46,7 +46,7 @@ export default function Comment({ blogId }: { blogId: string }) {
           type="text"
           name="comment"
           placeholder="Add a comment..."
-          className="flex-1 p-2 border rounded"
+          className="flex-1 p-2 border rounded text-black border-black"
           required
         />
         <button
