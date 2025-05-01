@@ -60,4 +60,4 @@ export default async function Dashboard() {
     </div>
   );
 }
-export const revalidate=60
+export const revalidate = 60;

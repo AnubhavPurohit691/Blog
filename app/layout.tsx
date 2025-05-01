@@ -25,15 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="light" style={{ colorScheme: 'light' }}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className="light"
+      style={{ colorScheme: "light" }}
+    >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200`}
       >
         <Provider>
           <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
+          <main className="min-h-screen">{children}</main>
         </Provider>
       </body>
     </html>

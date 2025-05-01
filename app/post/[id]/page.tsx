@@ -90,7 +90,9 @@ export default async function Page({ params }: Props) {
                   </span>
                 </div>
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">{data.author.name}</p>
+                  <p className="font-medium text-gray-900 dark:text-white">
+                    {data.author.name}
+                  </p>
                   <time className="text-sm text-gray-600 dark:text-gray-400">
                     {new Intl.DateTimeFormat("en-US", {
                       year: "numeric",
@@ -102,7 +104,7 @@ export default async function Page({ params }: Props) {
               </div>
             </>
           )}
-          
+
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <p className="text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-line text-lg">
               {data.content}
@@ -119,22 +121,21 @@ export default async function Page({ params }: Props) {
           <div className="space-y-8 mb-12">
             {data.comments.length > 0 ? (
               data.comments.map((comment) => (
-                <div 
-                  key={comment.id} 
-                  className="group"
-                >
+                <div key={comment.id} className="group">
                   <div className="flex items-start gap-4">
                     <div className="h-8 w-8 rounded-full bg-gray-900 dark:bg-white flex items-center justify-center flex-shrink-0">
                       <span className="text-xs font-medium text-white dark:text-gray-900">
-                        {comment.author?.name?.charAt(0).toUpperCase() || 'A'}
+                        {comment.author?.name?.charAt(0).toUpperCase() || "A"}
                       </span>
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <p className="font-medium text-gray-900 dark:text-white">
-                          {comment.author?.name || 'Anonymous'}
+                          {comment.author?.name || "Anonymous"}
                         </p>
-                        <span className="text-gray-400 dark:text-gray-500">•</span>
+                        <span className="text-gray-400 dark:text-gray-500">
+                          •
+                        </span>
                         <time className="text-sm text-gray-500 dark:text-gray-400">
                           {new Intl.DateTimeFormat("en-US", {
                             month: "short",
@@ -142,14 +143,18 @@ export default async function Page({ params }: Props) {
                           }).format(comment.createdAt)}
                         </time>
                       </div>
-                      <p className="text-gray-800 dark:text-gray-200">{comment.content}</p>
+                      <p className="text-gray-800 dark:text-gray-200">
+                        {comment.content}
+                      </p>
                     </div>
                   </div>
                 </div>
               ))
             ) : (
               <div className="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <p className="text-gray-600 dark:text-gray-400">No comments yet. Start the conversation!</p>
+                <p className="text-gray-600 dark:text-gray-400">
+                  No comments yet. Start the conversation!
+                </p>
               </div>
             )}
           </div>
@@ -166,4 +171,4 @@ export default async function Page({ params }: Props) {
     </div>
   );
 }
-export const revalidate=60
+export const revalidate = 60;

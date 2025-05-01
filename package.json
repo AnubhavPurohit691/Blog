@@ -6,7 +6,7 @@
     "dev": "pnpx prisma migrate dev && next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "db:migrate":"",
+    "db:migrate": "",
     "lint": "next lint",
     "format": "prettier --write ."
   },
