@@ -30,7 +30,7 @@ export default async function Home() {
           </h1>
           <p className="text-lg text-white max-w-2xl mx-auto">
             Discover insightful articles and stories from our community of
-            writers.
+            writers.done
           </p>
         </div>
 
