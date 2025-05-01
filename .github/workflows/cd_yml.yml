@@ -22,7 +22,7 @@ jobs:
       - name: Build and push docker image
         run: |
           docker compose build
-          docker tag $(basename $(pwd))_app ${{ secrets.Docker_USERNAME }}/blogapplication:latest
+          docker tag $(basename $(pwd) | tr '[:upper:]' '[:lower:]')_app ${{ secrets.Docker_USERNAME }}/blogapplication:latest
           docker push ${{ secrets.Docker_USERNAME }}/blogapplication:latest
 
       - name: SSH into VM and Deploy
