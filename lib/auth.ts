@@ -1,4 +1,4 @@
-import { AuthOptions, Session } from "next-auth";
+import { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 // Extend the Session type to include the id property
 declare module "next-auth" {
@@ -22,7 +22,7 @@ export const authOptions: AuthOptions = {
   ],
   secret: process.env.AUTH_SECRET,
   callbacks: {
-    session: ({ session, token, user }) => {
+    session: ({ session, token }) => {
       if (session.user) {
         session.user.id = token.sub;
       }

@@ -3,7 +3,7 @@ import React from "react";
 import { ModeToggle } from "./ModeToggle";
 import AuthButton from "./AuthButton";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
 export default async function Navbar() {

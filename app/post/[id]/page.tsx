@@ -13,22 +13,16 @@ interface Comment {
   };
 }
 
-interface Blog {
-  id: string;
-  title: string;
-  content: string;
-  ImageUrl?: string;
-  createdAt: Date;
-  author: {
-    name: string;
-  };
-  comments: Comment[];
-}
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
-export default async function Posts({ params }: { params: { id: string } }) {
+export default async function Page({ params }: Props) {
+  const resolvedParams = await params;
   const data = await prisma.blog.findFirst({
     where: {
-      id: params.id,
+      id: resolvedParams.id,
     },
     include: {
       comments: {
