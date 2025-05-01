@@ -8,7 +8,8 @@
     "start": "next start",
     "db:migrate": "",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "lint:check": "eslint .",
+  "format:check": "prettier --check ."
   },
   "dependencies": {
     "@prisma/client": "6.6.0",
