@@ -28,4 +28,5 @@ jobs:
         run: pnpm prisma generate
 
       - name: Build Project
-        run: pnpm run build
+        run: |
+          DATABASE_URL=${{ secrets.VM_DATABASE_URL }} pnpm run build
