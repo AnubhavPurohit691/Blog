@@ -20,9 +20,11 @@ jobs:
           password: ${{secrets.Docker_PASSWORD}}
 
       - name: Build and push docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.Docker_USERNAME }}
         run: |
           docker compose build
-          docker tag $(basename $(pwd) | tr '[:upper:]' '[:lower:]')_app ${{ secrets.Docker_USERNAME }}/blogapplication:latest
+          docker tag blog_app ${{ secrets.Docker_USERNAME }}/blogapplication:latest
           docker push ${{ secrets.Docker_USERNAME }}/blogapplication:latest
 
       - name: SSH into VM and Deploy
@@ -32,5 +34,5 @@ jobs:
           username: ${{ secrets.VM_OS }}
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/blogapplication:latest
+            docker pull ${{ secrets.Docker_USERNAME }}/blogapplication:latest
             DATABASE_URL=${{ secrets.VM_DATABASE_URL }} docker compose up -d --build
