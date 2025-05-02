@@ -3,10 +3,7 @@ import React from "react";
 import { ModeToggle } from "./ModeToggle";
 import AuthButton from "./AuthButton";
 
-
 export default async function Navbar() {
-  
- 
   return (
     <div className="flex justify-between py-6 mx-10 ">
       <Link href={"/"} className="text-3xl ">

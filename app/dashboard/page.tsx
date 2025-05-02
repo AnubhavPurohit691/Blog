@@ -36,7 +36,7 @@ export default async function Dashboard() {
     return <div>User not found</div>;
   }
   const data = await getData(user.id);
-  console.log(data);
+
   return (
     <div className="px-16 pt-8">
       <div className="flex items-center justify-between mb-4">

@@ -34,15 +34,15 @@ export const authOptions: AuthOptions = {
         return false;
       }
 
-      const existing = await prisma.user.findFirst({ 
-        where: { email: user.email } 
+      const existing = await prisma.user.findFirst({
+        where: { email: user.email },
       });
 
       if (!existing) {
         await prisma.user.create({
           data: {
             email: user.email,
-            name: user.name || user.email.split('@')[0],
+            name: user.name || user.email.split("@")[0],
           },
         });
       }
