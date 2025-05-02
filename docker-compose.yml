@@ -13,8 +13,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - DATABASE_URL=postgresql://postgres:mysecret@postgres:5432/postgres
     ports:
       - 3000:3000
     depends_on:
