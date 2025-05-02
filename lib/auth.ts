@@ -1,5 +1,6 @@
 import { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { prisma } from "@/lib/db";
 // Extend the Session type to include the id property
 declare module "next-auth" {
   interface Session {
@@ -27,6 +28,26 @@ export const authOptions: AuthOptions = {
         session.user.id = token.sub;
       }
       return session;
+    },
+    signIn: async ({ user }) => {
+      if (!user.email) {
+        return false;
+      }
+
+      const existing = await prisma.user.findFirst({ 
+        where: { email: user.email } 
+      });
+
+      if (!existing) {
+        await prisma.user.create({
+          data: {
+            email: user.email,
+            name: user.name || user.email.split('@')[0],
+          },
+        });
+      }
+
+      return true;
     },
   },
 };
