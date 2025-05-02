@@ -21,7 +21,7 @@ jobs:
 
       - name: Build and push docker image
         run: |
-          docker compose build
+          docker compose build --build-arg DATABASE_URL=${{ secrets.VM_DATABASE_URL }}
           docker tag blog_app ${{ secrets.Docker_USERNAME }}/blog:latest
           docker push ${{ secrets.Docker_USERNAME }}/blog:latest
 
