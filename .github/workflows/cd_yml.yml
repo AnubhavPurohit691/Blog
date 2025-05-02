@@ -32,10 +32,10 @@ jobs:
           username: ${{ secrets.VM_OS }}
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.Docker_USERNAME }}/blog:latest
-            docker stop blog || true
-            docker rm blog || true
-            docker run -d \
+            sudo docker pull ${{ secrets.Docker_USERNAME }}/blog:latest
+            sudo docker stop blog || true
+            sudo docker rm blog || true
+            sudo docker run -d \
               --name blog \
               -p 80:3000 \
               -e DATABASE_URL=${{ secrets.VM_DATABASE_URL }} \
