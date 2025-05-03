@@ -1,3 +1,4 @@
+
 FROM node:23-alpine
 
 ARG DATABASE_URL
