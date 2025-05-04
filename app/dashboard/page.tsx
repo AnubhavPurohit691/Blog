@@ -2,7 +2,7 @@ import { BlogPostCard } from "@/components/BlogPostCard";
 import { buttonVariants } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth"; 
+import { authOptions } from "@/lib/auth";
 import Link from "next/link";
 import React from "react";
 
@@ -18,7 +18,7 @@ async function getData(userId: string) {
 }
 
 export default async function Dashboard() {
-  const session = await getServerSession(authOptions); 
+  const session = await getServerSession(authOptions);
   if (!session?.user?.email) {
     return <div>Please log in</div>;
   }
