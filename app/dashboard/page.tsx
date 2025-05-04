@@ -2,39 +2,35 @@ import { BlogPostCard } from "@/components/BlogPostCard";
 import { buttonVariants } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth"; 
 import Link from "next/link";
 import React from "react";
 
 async function getData(userId: string) {
-  const data = await prisma.blog.findMany({
-    where: {
-      authorId: userId,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
+  return await prisma.blog.findMany({
+    where: { authorId: userId },
+    orderBy: { createdAt: "desc" },
     include: {
       author: true,
-      comments: {
-        include: {
-          author: true,
-        },
-      },
+      comments: { include: { author: true } },
     },
   });
-  return data;
 }
 
 export default async function Dashboard() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions); 
+  if (!session?.user?.email) {
+    return <div>Please log in</div>;
+  }
+
   const user = await prisma.user.findFirst({
-    where: {
-      email: session?.user.email as string,
-    },
+    where: { email: session.user.email },
   });
+
   if (!user) {
     return <div>User not found</div>;
   }
+
   const data = await getData(user.id);
 
   return (
@@ -49,15 +45,15 @@ export default async function Dashboard() {
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {data.map((item) => {
-          const formattedItem = {
-            ...item,
-            ImageUrl: item.ImageUrl ?? undefined,
-          };
-          return <BlogPostCard data={formattedItem} key={item.id} />;
-        })}
+        {data.map((item) => (
+          <BlogPostCard
+            data={{ ...item, ImageUrl: item.ImageUrl ?? undefined }}
+            key={item.id}
+          />
+        ))}
       </div>
     </div>
   );
 }
+
 export const revalidate = 60;

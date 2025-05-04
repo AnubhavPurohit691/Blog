@@ -1,5 +1,5 @@
 
-FROM node:23-alpine
+FROM node:20-alpine
 
 ARG DATABASE_URL
 ENV DATABASE_URL=$DATABASE_URL
@@ -26,5 +26,5 @@ RUN DATABASE_URL=${DATABASE_URL} pnpm run build
 
 EXPOSE 3000
 
-CMD [ "pnpm" , "dev" ]
+CMD [ "pnpm" , "start" ]
 
